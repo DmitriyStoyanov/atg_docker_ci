@@ -1,0 +1,33 @@
+# Wed May 02 22:39:48 UTC 2018
+# Replay feature output
+# ---------------------
+# This file was built by the Replay feature of InstallAnywhere.
+# It contains variables that were set by Panels, Consoles or Custom Code.
+
+
+
+#Installed features
+#------------------
+CHOSEN_INSTALL_FEATURE_LIST=RM,Commerce,Portal,CA,MP
+
+#Choose Install Folder
+#---------------------
+USER_INSTALL_DIR=/atg
+
+#Product Selection Console
+#-------------------------
+CHOSEN_INSTALL_FEATURE_LIST=RM,Commerce,Portal,CA,MP
+
+#Select Application Server
+#-------------------------
+SELECTED_APP_SERVER=\"\",\"\",\"\",\"\",\"Skip server selection\"
+
+#Install
+#-------
+-fileOverwrite_/atg/.ASE11.2_config/config/setup_rule.xml=Yes
+-fileOverwrite_/atg/.ASE11.2_config/config/j2ee_deploy_setup_rule.xml=Yes
+-fileOverwrite_/atg/.ASE11.2_config/lib/OCIAPlatformlib.jar=Yes
+-fileOverwrite_/atg/.ASE11.2_config/lib/vendorlibs.jar=Yes
+-fileOverwrite_/atg/.ASE11.2_config/bin/getlicense.sh=Yes
+-fileOverwrite_/atg/.ASE11.2_config/bin/getlicense.bat=Yes
+-fileOverwrite_/atg/uninstall/.ASE11.2_uninstall/Uninstall Oracle Commerce Platform 11.2.lax=Yes
