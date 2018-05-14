@@ -42,7 +42,12 @@ RUN echo Install NodeJS Git Ant && \
     mv apache-ant-1.9.11 /usr/local/ant && \
 	echo export ANT_HOME=/usr/local/ant >> /etc/profile && \
 	echo export PATH=\$PATH:\$ANT_HOME/bin >> /etc/profile && \
+	wget -q https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.1.0.1141-linux.zip && \
+	unzip -q sonar-scanner-cli-3.1.0.1141-linux.zip && \
+	mv sonar-scanner-3.1.0.1141-linux /usr/local/sonar-scanner && \
+	echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
 	source /etc/profile && \
-	echo Ant Version $(ant -version)
+	echo Ant Version $(ant -version) && \
+	echo $(sonar-scanner -v|grep 'SonarQube Scanner')
 
 CMD ["/bin/bash"]
