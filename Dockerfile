@@ -27,7 +27,7 @@ RUN echo Update the image with the latest packages && \
 	echo export JAVA_HOME=/usr/java/latest >> /etc/profile && \
 	echo export PATH=\$PATH:\$JAVA_HOME/bin >> /etc/profile
 
-RUN echo Install NodeJS Git Ant && \
+RUN echo Install NodeJS Git Ant SonarQube Scanner and OWASP Dependency Check && \
 	curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - && \
     yum install -y -q http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm && \
     yum install -y -q nodejs git && \
@@ -47,8 +47,14 @@ RUN echo Install NodeJS Git Ant && \
 	rm -f sonar-scanner-cli-3.1.0.1141-linux.zip && \
 	mv sonar-scanner-3.1.0.1141-linux /usr/local/sonar-scanner && \
 	echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
+    wget -q http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.2.0-release.zip && \
+	unzip -q dependency-check-3.2.0-release.zip && \
+	rm -f dependency-check-3.2.0-release.zip && \
+	mv dependency-check /usr/local/ && \
+	echo export PATH=\$PATH:/usr/local/dependency-check/bin >> /etc/profile && \
 	source /etc/profile && \
-	echo Ant Version $(ant -version) && \
-	echo $(sonar-scanner -v|grep 'SonarQube Scanner')
+	ant -version && \
+	echo $(sonar-scanner -v|grep 'SonarQube Scanner') && \
+	dependency-check.sh -v
 
 CMD ["/bin/bash"]
