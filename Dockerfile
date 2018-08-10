@@ -11,17 +11,17 @@ RUN echo Update the image with the latest packages && \
 	echo Install unzip and wget packages && \
 	yum install -y -q unzip wget && \
 	yum clean -q all && \
-	echo Download Oracle JDK 7u181 and ATG Commerce 11.2 with patch 11.2.0.2 with fixpack 1 && \
-    wget -q https://getfile.dokpub.com/yandex/get/https://yadi.sk/d/eN3iXXEh3VaE3i -O jdk-7u181-linux-x64.rpm && \
-    wget -q https://getfile.dokpub.com/yandex/get/https://yadi.sk/d/d-InUBZT3VaDu2 -O V78217-01.zip && \
-    wget -q https://getfile.dokpub.com/yandex/get/https://yadi.sk/d/BfHLB0Y63VZVJa -O p24950065_112000_Generic.zip && \
-    wget -q https://getfile.dokpub.com/yandex/get/https://yadi.sk/d/8_tVHQSw3VaE9R -O p25404313_112020_Generic.zip && \
-	echo Install Oracle JDK 7u181, Install ATG Platform with patch 11.2.0.2 with fixpack 1 && \
-    rpm -i jdk-7u181-linux-x64.rpm && \
+	echo Download Oracle JDK 7u191 and ATG Commerce 11.2 with patch 11.2.0.2 with fixpack 1 && \
+	wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-java/jdk-7u191-linux-x64.rpm && \
+    wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2/V78217-01.zip && \
+    wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2_patch/p24950065_112000_Generic.zip && \
+    wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2_patch/p25404313_112020_Generic.zip && \
+    echo Install Oracle JDK 7u191, Install ATG Platform with patch 11.2.0.2 with fixpack 1 && \
+    rpm -i jdk-7u191-linux-x64.rpm && \
     unzip -q V78217-01.zip && \
     chmod +x OCPlatform11_2.bin && ./OCPlatform11_2.bin -f ./OCPlatform11_2.rsp -i silent && \
-    cd /atg/patch/ && unzip -q /distr/p24950065_112000_Generic.zip && cd OCPlatform11.2_p2/ && chmod +x bin/*.sh && echo Y | bin/install.sh && cd .. && rm -rf OCPlatform11.2_p2 && \
-    cd /atg/patch/ && unzip -q /distr/p25404313_112020_Generic.zip && cd OCPlatform11.2_p2.1/ && chmod +x bin/*.sh && echo Y | bin/install.sh && cd .. && rm -rf OCPlatform11.2_p2.1 && \
+    cd /atg/patch/ && unzip -q $DISTR_DIR/p24950065_112000_Generic.zip && cd OCPlatform11.2_p2/ && chmod +x bin/*.sh && echo Y | bin/install.sh && cd .. && rm -rf OCPlatform11.2_p2 && \
+    cd /atg/patch/ && unzip -q $DISTR_DIR/p25404313_112020_Generic.zip && cd OCPlatform11.2_p2.1/ && chmod +x bin/*.sh && echo Y | bin/install.sh && cd .. && rm -rf OCPlatform11.2_p2.1 && \
     rm -f $DISTR_DIR/* && \
 	echo export DYNAMO_ROOT=/atg >> /etc/profile && \
 	echo export JAVA_HOME=/usr/java/latest >> /etc/profile && \
@@ -36,20 +36,20 @@ RUN echo Install NodeJS Git Ant SonarQube Scanner and OWASP Dependency Check && 
     echo Git version $(git --version) && \
     npm i npm@latest -g && \
     echo npm version $(npm -v) && \
-    wget -q http://ftp.byfly.by/pub/apache.org//ant/binaries/apache-ant-1.9.11-bin.zip && \
-    unzip -q apache-ant-1.9.11-bin.zip && \
-	rm -f apache-ant-1.9.11-bin.zip && \
-    mv apache-ant-1.9.11 /usr/local/ant && \
+    wget -q http://ftp.byfly.by/pub/apache.org/ant/binaries/apache-ant-1.9.13-bin.zip && \
+    unzip -q apache-ant-1.9.13-bin.zip && \
+	rm -f apache-ant-1.9.13-bin.zip && \
+    mv apache-ant-1.9.13 /usr/local/ant && \
 	echo export ANT_HOME=/usr/local/ant >> /etc/profile && \
 	echo export PATH=\$PATH:\$ANT_HOME/bin >> /etc/profile && \
-	wget -q https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.1.0.1141-linux.zip && \
-	unzip -q sonar-scanner-cli-3.1.0.1141-linux.zip && \
-	rm -f sonar-scanner-cli-3.1.0.1141-linux.zip && \
-	mv sonar-scanner-3.1.0.1141-linux /usr/local/sonar-scanner && \
+	wget -q https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip && \
+	unzip -q sonar-scanner-cli-3.2.0.1227-linux.zip && \
+	rm -f sonar-scanner-cli-3.2.0.1227-linux.zip && \
+	mv sonar-scanner-3.2.0.1227-linux /usr/local/sonar-scanner && \
 	echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
-    wget -q http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.2.0-release.zip && \
-	unzip -q dependency-check-3.2.0-release.zip && \
-	rm -f dependency-check-3.2.0-release.zip && \
+    wget -q http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.3.1-release.zip && \
+	unzip -q dependency-check-3.3.1-release.zip && \
+	rm -f dependency-check-3.3.1-release.zip && \
 	mv dependency-check /usr/local/ && \
 	echo export PATH=\$PATH:/usr/local/dependency-check/bin >> /etc/profile && \
 	source /etc/profile && \
