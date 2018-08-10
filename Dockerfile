@@ -47,9 +47,9 @@ RUN echo Install NodeJS Git Ant SonarQube Scanner and OWASP Dependency Check && 
 	rm -f sonar-scanner-cli-3.2.0.1227-linux.zip && \
 	mv sonar-scanner-3.2.0.1227-linux /usr/local/sonar-scanner && \
 	echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
-    wget -q http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.3.1-release.zip && \
-	unzip -q dependency-check-3.3.1-release.zip && \
-	rm -f dependency-check-3.3.1-release.zip && \
+	wget -q http://dl.bintray.com/jeremy-long/owasp/dependency-check-3.2.0-release.zip && \
+	unzip -q dependency-check-3.2.0-release.zip && \
+	rm -f dependency-check-3.2.0-release.zip && \
 	mv dependency-check /usr/local/ && \
 	echo export PATH=\$PATH:/usr/local/dependency-check/bin >> /etc/profile && \
 	source /etc/profile && \
