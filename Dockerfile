@@ -12,10 +12,10 @@ RUN echo Update the image with the latest packages && \
 	yum install -y -q unzip wget && \
 	yum clean -q all && \
 	echo Download Oracle JDK 7u191 and ATG Commerce 11.2 with patch 11.2.0.2 with fixpack 1 && \
-	wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-java/jdk-7u191-linux-x64.rpm && \
-    wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2/V78217-01.zip && \
-    wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2_patch/p24950065_112000_Generic.zip && \
-    wget -q https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2_patch/p25404313_112020_Generic.zip && \
+	wget https://touch.epm-esp.projects.epam.com/static-files/oracle-java/jdk-7u191-linux-x64.rpm && \
+    wget https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2/V78217-01.zip && \
+    wget https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2_patch/p24950065_112000_Generic.zip && \
+    wget https://touch.epm-esp.projects.epam.com/static-files/oracle-commerce-suite/commerce/ATG11.2/ATG11.2_patch/p25404313_112020_Generic.zip && \
     echo Install Oracle JDK 7u191, Install ATG Platform with patch 11.2.0.2 with fixpack 1 && \
     rpm -i jdk-7u191-linux-x64.rpm && \
     unzip -q V78217-01.zip && \
@@ -36,18 +36,18 @@ RUN echo Install NodeJS Git Ant SonarQube Scanner and OWASP Dependency Check && 
     echo Git version $(git --version) && \
     npm i npm@latest -g && \
     echo npm version $(npm -v) && \
-    wget -q http://ftp.byfly.by/pub/apache.org/ant/binaries/apache-ant-1.9.13-bin.zip && \
+    wget http://ftp.byfly.by/pub/apache.org/ant/binaries/apache-ant-1.9.13-bin.zip && \
     unzip -q apache-ant-1.9.13-bin.zip && \
 	rm -f apache-ant-1.9.13-bin.zip && \
     mv apache-ant-1.9.13 /usr/local/ant && \
 	echo export ANT_HOME=/usr/local/ant >> /etc/profile && \
 	echo export PATH=\$PATH:\$ANT_HOME/bin >> /etc/profile && \
-	wget -q https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip && \
+	wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip && \
 	unzip -q sonar-scanner-cli-3.2.0.1227-linux.zip && \
 	rm -f sonar-scanner-cli-3.2.0.1227-linux.zip && \
 	mv sonar-scanner-3.2.0.1227-linux /usr/local/sonar-scanner && \
 	echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
-	wget -q http://dl.bintray.com/jeremy-long/owasp/dependency-check-4.0.0-release.zip && \
+	wget http://dl.bintray.com/jeremy-long/owasp/dependency-check-4.0.0-release.zip && \
 	unzip -q dependency-check-4.0.0-release.zip && \
 	rm -f dependency-check-4.0.0-release.zip && \
 	mv dependency-check /usr/local/ && \
