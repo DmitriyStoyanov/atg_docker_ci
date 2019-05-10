@@ -45,8 +45,20 @@ RUN echo Install NodeJS Git Ant SonarQube Scanner and OWASP Dependency Check && 
 	rm -f sonar-scanner-cli-3.2.0.1227-linux.zip && \
 	mv sonar-scanner-3.2.0.1227-linux /usr/local/sonar-scanner && \
 	echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
+	echo shaper installation && \
+	yum install -y -q gcc openssl-devel bzip2-devel && \
+	yum clean -q all && \
+	export PYTHON_VER=2.7.16 && \
+	curl -O https://www.python.org/ftp/python/${PYTHON_VER}/Python-${PYTHON_VER}.tgz && \
+	tar xzf Python-${PYTHON_VER}.tgz && \
+	Python-${PYTHON_VER}/./configure --enable-optimizations && \
+	make altinstall && \
+	curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+	/usr/local/bin/python2.7 get-pip.py && \
+	/usr/local/bin/pip2.7 install shaper && \
 	source /etc/profile && \
 	ant -version && \
-	echo $(sonar-scanner -v|grep 'SonarQube Scanner')
+	echo $(sonar-scanner -v|grep 'SonarQube Scanner') && \
+	rm -rf $DISTR_DIR/*
 
 CMD ["/bin/bash"]
