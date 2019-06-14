@@ -65,6 +65,7 @@ RUN echo Install NodeJS Git Ant SonarQube Scanner, OWASP Dependency Check, Shape
     source /root/.sdkman/bin/sdkman-init.sh && \
     sdk install gradle ${GRADLE_VER} && \
     gradle -v && \
+    echo export PATH=\$PATH:${GRADLE_HOME}/bin >> /etc/profile && \
 	source /etc/profile && \
 	ant -version && \
 	echo $(sonar-scanner -v|grep 'SonarQube Scanner') && \
