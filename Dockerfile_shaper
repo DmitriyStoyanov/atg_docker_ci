@@ -63,4 +63,16 @@ RUN echo Install NodeJS, Git, Ant, Gradle, SonarQube Scanner and OWASP Dependenc
     echo $(sonar-scanner -v|grep 'SonarQube Scanner') && \
     rm -rf $DISTR_DIR/*
 
+ENV PYTHON_VER 2.7.16
+RUN echo shaper installation && \
+    yum install -y -q gcc openssl-devel bzip2-devel && \
+    yum clean -q all && \
+    curl -O https://www.python.org/ftp/python/${PYTHON_VER}/Python-${PYTHON_VER}.tgz && \
+    tar xzf Python-${PYTHON_VER}.tgz && \
+    Python-${PYTHON_VER}/./configure --enable-optimizations && \
+    make altinstall && \
+    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+    /usr/local/bin/python2.7 get-pip.py && \
+    /usr/local/bin/pip2.7 install shaper==0.1.3
+
 CMD ["/bin/bash"]
