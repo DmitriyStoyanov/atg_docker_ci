@@ -31,7 +31,7 @@ RUN echo Install unzip package && \
     echo export PATH=\$PATH:\$JAVA_HOME/bin >> /etc/profile
 
 ENV ANT_VER 1.9.13
-ENV SONAR_SCANNER_VER 3.2.0.1227
+ENV SONAR_SCANNER_VER 3.3.0.1492
 COPY --from=gradle /root/.sdkman/candidates/gradle/4.10.3 /opt/gradle
 RUN echo Install NodeJS, Git, Ant, Gradle, SonarQube Scanner and OWASP Dependency Check && \
     curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - && \
