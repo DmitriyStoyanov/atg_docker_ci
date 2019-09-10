@@ -2,7 +2,7 @@ FROM centos:6 AS gradle
 ENV GRADLE_VER 4.10.3
 RUN yum install -y zip unzip java-1.8.0-openjdk && \
     curl -s "https://get.sdkman.io" | bash && \
-	source /root/.sdkman/bin/sdkman-init.sh && \
+    source /root/.sdkman/bin/sdkman-init.sh && \
     sdk install gradle ${GRADLE_VER} > /dev/null && \
     gradle -v
 
@@ -34,7 +34,7 @@ ENV ANT_VER 1.9.14
 ENV SONAR_SCANNER_VER 3.3.0.1492
 COPY --from=gradle /root/.sdkman/candidates/gradle/4.10.3 /opt/gradle
 RUN echo Install NodeJS, Git, Ant, Gradle, SonarQube Scanner and OWASP Dependency Check && \
-    curl -s -L https://rpm.nodesource.com/setup_8.x | bash - && \
+    curl -sS -L https://rpm.nodesource.com/setup_8.x | bash - && \
     yum install -y -q http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm && \
     yum install -y -q nodejs git zip && \
     yum clean all && \
@@ -53,7 +53,7 @@ RUN echo Install NodeJS, Git, Ant, Gradle, SonarQube Scanner and OWASP Dependenc
     rm -f sonar-scanner-cli-${SONAR_SCANNER_VER}-linux.zip && \
     mv sonar-scanner-${SONAR_SCANNER_VER}-linux /usr/local/sonar-scanner && \
     echo export PATH=\$PATH:/usr/local/sonar-scanner/bin >> /etc/profile && \
-	echo setup gradle && \
+    echo setup gradle && \
     export GRADLE_HOME=/opt/gradle && \
     echo export GRADLE_HOME=${GRADLE_HOME} >> /etc/profile && \
     echo export PATH=\$PATH:${GRADLE_HOME}/bin >> /etc/profile && \
