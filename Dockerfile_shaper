@@ -1,4 +1,4 @@
-FROM centos:6 AS gradle
+FROM centos:8 AS gradle
 ENV GRADLE_VER 4.10.3
 RUN yum install --color=never -y zip unzip java-1.8.0-openjdk && \
     curl -s "https://get.sdkman.io" | bash && \
@@ -6,7 +6,7 @@ RUN yum install --color=never -y zip unzip java-1.8.0-openjdk && \
     sdk install gradle ${GRADLE_VER} > /dev/null && \
     gradle -v
 
-FROM centos:6
+FROM centos:8
 ENV DISTR_DIR /distr
 WORKDIR $DISTR_DIR
 COPY OCPlatform11_2.rsp $DISTR_DIR/
