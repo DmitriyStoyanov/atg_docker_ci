@@ -34,7 +34,7 @@ ENV ANT_VER 1.9.14
 ENV SONAR_SCANNER_VER 3.3.0.1492
 COPY --from=gradle /root/.sdkman/candidates/gradle/4.10.3 /opt/gradle
 RUN echo Install NodeJS, Git, Ant, Gradle, SonarQube Scanner and OWASP Dependency Check && \
-    curl -sS -L https://rpm.nodesource.com/setup_8.x | bash - && \
+    curl -sS -L https://rpm.nodesource.com/setup_10.x | bash - && \
     yum install -y -q http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm && \
     yum install -y -q nodejs git zip && \
     yum clean all && \
