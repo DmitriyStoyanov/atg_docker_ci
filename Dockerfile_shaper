@@ -14,7 +14,7 @@ ARG JDK_VER="7u251"
 ARG JDK8_VER="8u241"
 ENV JAVA_HOME /usr/java/latest
 ENV DYNAMO_ROOT /atg
-ENV PES_JAVA_HOME /usr/java/jdk1.7.0_241-amd64
+ENV PES_JAVA_HOME /usr/java/jdk1.7.0_251-amd64
 
 RUN echo Install unzip package && \
     yum install -y -q unzip && \
