@@ -1,5 +1,5 @@
 FROM centos:6 AS gradle
-ENV GRADLE_VER 6.0.1
+ARG GRADLE_VER="6.0.1"
 RUN yum install --color=never -y zip unzip java-1.8.0-openjdk && \
     curl -s "https://get.sdkman.io" | bash && \
     source /root/.sdkman/bin/sdkman-init.sh && \
@@ -7,11 +7,11 @@ RUN yum install --color=never -y zip unzip java-1.8.0-openjdk && \
     gradle -v
 
 FROM centos:6
-ENV DISTR_DIR /distr
+ARG DISTR_DIR="/distr"
 WORKDIR $DISTR_DIR
 COPY OCPlatform11_2.rsp $DISTR_DIR/
-ENV JDK_VER 7u251
-ENV JDK8_VER 8u241
+ARG JDK_VER="7u251"
+ARG JDK8_VER="8u241"
 ENV JAVA_HOME /usr/java/latest
 ENV DYNAMO_ROOT /atg
 ENV PES_JAVA_HOME /usr/java/jdk1.7.0_241-amd64
@@ -40,10 +40,10 @@ RUN echo Install unzip package && \
     echo export JAVA_HOME=${JAVA_HOME} >> /etc/profile && \
     echo export PATH=\$PATH:\$JAVA_HOME/bin >> /etc/profile
 
-ENV ANT_VER 1.9.14
+ARG ANT_VER="1.9.14"
 ENV ANT_HOME /usr/local/ant
-ENV SONAR_SCANNER_VER 3.3.0.1492
-ENV GRADLE_VER 6.0.1
+ARG SONAR_SCANNER_VER="4.2.0.1873"
+ARG GRADLE_VER="6.1.1"
 ENV GRADLE_HOME /opt/gradle
 
 COPY --from=gradle /root/.sdkman/candidates/gradle/${GRADLE_VER} /opt/gradle
