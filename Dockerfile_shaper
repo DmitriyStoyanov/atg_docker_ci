@@ -1,5 +1,5 @@
 FROM centos:6 AS gradle
-ARG GRADLE_VER="6.0.1"
+ARG GRADLE_VER="6.1.1"
 RUN yum install --color=never -y zip unzip java-1.8.0-openjdk && \
     curl -s "https://get.sdkman.io" | bash && \
     source /root/.sdkman/bin/sdkman-init.sh && \
